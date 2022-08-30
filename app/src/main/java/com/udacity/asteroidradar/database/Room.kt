@@ -8,9 +8,9 @@ import androidx.room.Query
 import com.udacity.asteroidradar.DatabaseConstants
 
 @Dao
-interface IAsteroidDao {
+interface Room {
 
-    @Query("SELECT * FROM ${DatabaseConstants.TABLE_NAME} ORDER by closeApproachDate")
+    @Query("select * from asteroid")
     fun getAll(): LiveData<List<AsteroidEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

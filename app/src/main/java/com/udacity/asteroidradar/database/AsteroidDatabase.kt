@@ -9,7 +9,7 @@ import com.udacity.asteroidradar.DatabaseConstants
 @Database(version = 1,entities = [AsteroidEntity::class])
 abstract class AsteroidDatabase : RoomDatabase() {
 
-    abstract val dao: IAsteroidDao
+    abstract val dao: com.udacity.asteroidradar.database.Room
 
     companion object {
         @Volatile

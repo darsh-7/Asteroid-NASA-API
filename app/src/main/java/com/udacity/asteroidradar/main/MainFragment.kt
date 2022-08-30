@@ -25,7 +25,7 @@ class MainFragment : Fragment() {
         binding.viewModel = viewModel
 
         viewModel.img.observe(viewLifecycleOwner, Observer {
-            Log.i("model read", "sho changed " + it)
+            Log.i("MainFragment", "img changed " + it)
             Picasso.get().load(it).into(binding.activityMainImageOfTheDay)
         })
 

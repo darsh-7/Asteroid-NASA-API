@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.PictureOfDay
+import com.udacity.asteroidradar.api.ApiMang
 import com.udacity.asteroidradar.database.AsteroidDatabase
 import com.udacity.asteroidradar.repository.AsteroidsRepository
 import kotlinx.coroutines.launch
@@ -101,8 +102,8 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     private fun getPictureOfDay() {
         viewModelScope.launch {
             try {
-//                val  pictureOfDay = AsteroidApi.getPictureOfDay().await()
-                val  pictureOfDay = repository.getPictureOfDay()
+//                val  pictureOfDay = ApiMang.getPictureOfDay().await()
+                val  pictureOfDay = ApiMang.getPictureOfDay()
                 Log.i("MainViewModel","img url : "+pictureOfDay.url)
 
                 img.value = pictureOfDay.url

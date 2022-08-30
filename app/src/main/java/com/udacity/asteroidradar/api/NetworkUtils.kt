@@ -1,7 +1,7 @@
 package com.udacity.asteroidradar.api
 
 import com.udacity.asteroidradar.Asteroid
-import com.udacity.asteroidradar.NetworkConstants
+import com.udacity.asteroidradar.Constants
 import com.udacity.asteroidradar.database.AsteroidEntity
 import org.json.JSONArray
 import org.json.JSONObject
@@ -54,9 +54,9 @@ private fun getNextSevenDaysFormattedDates(): ArrayList<String> {
     val formattedDateList = ArrayList<String>()
 
     val calendar = Calendar.getInstance()
-    for (i in 0..NetworkConstants.DEFAULT_END_DATE_DAYS) {
+    for (i in 0..Constants.DEFAULT_END_DATE_DAYS) {
         val currentTime = calendar.time
-        val dateFormat = SimpleDateFormat(NetworkConstants.API_QUERY_DATE_FORMAT, Locale.getDefault())
+        val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
         formattedDateList.add(dateFormat.format(currentTime))
         calendar.add(Calendar.DAY_OF_YEAR, 1)
     }
