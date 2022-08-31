@@ -1,13 +1,8 @@
 package com.udacity.asteroidradar
 
-import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.squareup.picasso.Picasso
 
 
 @BindingAdapter("statusIcon")

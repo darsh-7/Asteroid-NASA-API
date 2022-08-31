@@ -30,17 +30,15 @@ class MainFragment : Fragment() {
         })
 
 
-        // recycle view
-        val adapter = AsteroidListAdapter(AsteroidItemClickListener { asteroidId ->
+        val adapter = AsteroidListAdapter(AsteroidClickListener { asteroidId ->
             viewModel.onAsteroidItemClick(asteroidId)
         })
         binding.asteroidRecycler.adapter = adapter
-        viewModel.asteroids.observe(viewLifecycleOwner, { asteroids ->
-            adapter.submitList(asteroids)
+        viewModel.asteroids.observe(viewLifecycleOwner, {
+            adapter.submitList(it)
         })
 
-        // navigation
-        viewModel.navigateToDetailFragment.observe(viewLifecycleOwner,  { asteroid ->
+        viewModel.navToDetailFrag.observe(viewLifecycleOwner,  { asteroid ->
             asteroid?.let {
                 findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
                 viewModel.onDetailFragmentNavigated()

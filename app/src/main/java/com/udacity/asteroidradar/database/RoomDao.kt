@@ -4,12 +4,26 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.udacity.asteroidradar.DatabaseConstants
+import androidx.lifecycle.LiveData
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 
-@Database(version = 1,entities = [AsteroidEntity::class])
+@Dao
+interface RoomDao {
+
+    @Query("select * from asteroid")
+    fun getAll(): LiveData<List<AsteroidEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(asteroids: List<AsteroidEntity>)
+}
+
+@Database(version = 1, entities = [AsteroidEntity::class], exportSchema = false)
 abstract class AsteroidDatabase : RoomDatabase() {
 
-    abstract val dao: com.udacity.asteroidradar.database.Room
+    abstract val AstDao: RoomDao
 
     companion object {
         @Volatile
@@ -17,11 +31,12 @@ abstract class AsteroidDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): AsteroidDatabase {
             synchronized(AsteroidDatabase::class.java) {
-                if(!::instance.isInitialized) {
+                if (!::instance.isInitialized) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         AsteroidDatabase::class.java,
-                        DatabaseConstants.DATABASE_FILE_NAME)
+                        "asteroid"
+                    )
                         .build()
                 }
             }

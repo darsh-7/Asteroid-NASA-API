@@ -9,7 +9,3 @@ object Constants {
     const val DEFAULT_END_DATE_DAYS = 7
 }
 
-object DatabaseConstants {
-    const val TABLE_NAME = "asteroid"
-    const val DATABASE_FILE_NAME = "asteroid.db"
-}

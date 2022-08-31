@@ -10,10 +10,10 @@ import com.udacity.asteroidradar.database.asAsteroids
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class AsteroidsRepository(private val database: AsteroidDatabase) {
+class Repo(private val database: AsteroidDatabase) {
 
     val asteroids: LiveData<List<Asteroid>> =
-        Transformations.map(database.dao.getAll()) {
+        Transformations.map(database.AstDao.getAll()) {
             it.asAsteroids()
         }
 
@@ -22,7 +22,7 @@ class AsteroidsRepository(private val database: AsteroidDatabase) {
 
             val asteroids = ApiMang.getAsteroids()
 
-            database.dao.insertAll(asteroids.asAsteroidEntities())
+            database.AstDao.insertAll(asteroids.asAsteroidEntities())
         }
     }
 }
