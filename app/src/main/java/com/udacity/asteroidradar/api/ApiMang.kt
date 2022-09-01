@@ -34,9 +34,8 @@ object ApiMang {
         .baseUrl(Constants.BASE_URL)
         .build()
 
-    private val RetroModel : ApiModel by lazy {
-        retrofit.create(ApiModel::class.java)
-    }
+    private val RetroModel = retrofit.create(ApiModel::class.java)
+
 
 suspend fun getAsteroids() : List<Asteroid> {
     val response = RetroModel.getAsteroids()

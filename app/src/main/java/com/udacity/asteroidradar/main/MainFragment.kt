@@ -34,16 +34,16 @@ class MainFragment : Fragment() {
             viewModel.onAsteroidItemClick(asteroidId)
         })
         binding.asteroidRecycler.adapter = adapter
-        viewModel.asteroids.observe(viewLifecycleOwner, {
+        viewModel.asteroids.observe(viewLifecycleOwner) {
             adapter.submitList(it)
-        })
+        }
 
-        viewModel.navToDetailFrag.observe(viewLifecycleOwner,  { asteroid ->
+        viewModel.navToDetailFrag.observe(viewLifecycleOwner) { asteroid ->
             asteroid?.let {
                 findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
                 viewModel.onDetailFragmentNavigated()
             }
-        })
+        }
 
         setHasOptionsMenu(true)
 
